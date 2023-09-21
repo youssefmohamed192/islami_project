@@ -1,4 +1,4 @@
-abstract class AppAssets{
+abstract class AppAssets {
   static const imagePath = "assets/images/";
   static const lightModeBG = "${imagePath}light_bg.png";
   static const iconQuran = "${imagePath}icon_quran.png";
