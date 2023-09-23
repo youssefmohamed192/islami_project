@@ -4,6 +4,7 @@ import 'package:islami_project/ui/screens/home/tabs/settings_tab/language_bottom
 import 'package:islami_project/utils/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 class SettingsTab extends StatelessWidget {
 
   @override

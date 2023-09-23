@@ -4,11 +4,11 @@
   "settings": "Settings",
   "language": "Language",
   "darkmode": "Dark Mode",
-  "light": "Light",
   "radio": "Radio",
   "sebha": "Sebha",
   "ahadeth": "Ahadeth",
   "quran": "Quran",
   "hadethname": "Name of the Hadeth",
-  "selectyourlanguage": "Select your Language"
+  "selectyourlanguage": "Select your Language",
+  "numberoftasbih": "Number of tasbih"
 }

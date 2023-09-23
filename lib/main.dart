@@ -22,19 +22,19 @@ class MyApp extends StatelessWidget {
       themeMode: provider.currentTheme,
       darkTheme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
-      localizationsDelegates: const [
+      localizationsDelegates:  [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         AppLocalizations.delegate
       ],
-      supportedLocales: const [
+      supportedLocales:  [
         Locale('en'), // English
         Locale('ar'), // Arabic
       ],
       locale: Locale(provider.currentLocale),
       routes: {
-        HomeScreen.routeName: (_) => const HomeScreen(),
+        HomeScreen.routeName: (_) =>  HomeScreen(),
         DetailsScreen.routeName: (_) => DetailsScreen()
       },
       initialRoute: HomeScreen.routeName,
