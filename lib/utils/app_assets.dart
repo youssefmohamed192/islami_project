@@ -13,4 +13,3 @@ abstract class AppAssets {
   static const headSebha = "${imagePath}head_sebha_logo.png";
   static const headSebhaDark = "${imagePath}head_sebha_dark.png";
 }
-

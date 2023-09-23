@@ -6,73 +6,88 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class SettingsTab extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     SettingsProvider provider = Provider.of(context);
-    bool switchValue = false;
+    bool switchValue = provider.currentTheme == ThemeMode.dark;
 
     return Container(
-      // to give padding by height of the screen use MediaQuery Class.
-      // MediaQuery.of(context).size.height this is the height of the screen
-      padding: EdgeInsets.only(top: MediaQuery
-          .of(context)
-          .size
-          .height * .1,
-          right: 20, left: 20),
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).size.height * 0.1,
+        right: 20,
+        left: 20,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Spacer(flex: 3),
-          Text(AppLocalizations.of(context)!.language, textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 22,),
+          Text(
+            AppLocalizations.of(context)!.language,
+            textAlign: TextAlign.start,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(
+            height: 22,
+          ),
           InkWell(
-            child: getRow(provider.currentLocale == "en" ? "English" : "العربية",context),
+            child: getRow(
+              provider.currentLocale == "en" ? "English" : "العربية",
+              context,
+            ),
             onTap: () {
               onLanguageClick(context);
             },
           ),
-          const SizedBox(height: 22,),
+          const SizedBox(
+            height: 22,
+          ),
           Row(
             children: [
-              Text("Dark Mode",textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.titleLarge),
-               Spacer(),
+              Text(
+                AppLocalizations.of(context)!.darkmode,
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Spacer(),
               Switch(
-                  value: switchValue,
-                  onChanged: (newSwitchValue){
-                    switchValue = newSwitchValue;
-                    if(switchValue){
-                      provider.changeModeTheme(ThemeMode.dark);
-                    }else{
-                      provider.changeModeTheme(ThemeMode.light);
-                    }
-                  }
+                value: switchValue,
+                onChanged: (newSwitchValue) {
+                  // Update the theme mode based on the switch value
+                  provider.changeModeTheme(
+                    newSwitchValue ? ThemeMode.dark : ThemeMode.light,
+                  );
+                },
               ),
             ],
-          )
-          // Spacer(flex: 7),
+          ),
         ],
       ),
     );
   }
 
-  Widget getRow(String tittle,BuildContext context) {
+  Widget getRow(String tittle, BuildContext context) {
     SettingsProvider provider = Provider.of(context);
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: provider.currentTheme == ThemeMode.light ?
-          AppColors.primary : AppColors.primaryDark)
+        color: Colors.white,
+        border: Border.all(
+          color: provider.currentTheme == ThemeMode.light
+              ? AppColors.primary
+              : AppColors.primaryDark,
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(tittle,
-            style:  TextStyle(color: provider.currentTheme == ThemeMode.light ?
-            AppColors.primary : AppColors.primaryDark, fontSize: 16),),
+          Text(
+            tittle,
+            style: TextStyle(
+              color: provider.currentTheme == ThemeMode.light
+                  ? AppColors.primary
+                  : AppColors.primaryDark,
+              fontSize: 16,
+            ),
+          ),
           const Icon(Icons.arrow_drop_down)
         ],
       ),
@@ -80,8 +95,10 @@ class SettingsTab extends StatelessWidget {
   }
 
   void onLanguageClick(BuildContext context) {
-    showModalBottomSheet(context: context, builder: (context){
-      return  LanguageBottomSheet();
-    });
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return LanguageBottomSheet();
+        });
   }
 }

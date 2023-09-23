@@ -9,12 +9,10 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-    create: (_) => SettingsProvider(),
-      child: MyApp()));
+      create: (_) => SettingsProvider(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     SettingsProvider provider = Provider.of(context);
@@ -22,20 +20,20 @@ class MyApp extends StatelessWidget {
       themeMode: provider.currentTheme,
       darkTheme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
-      localizationsDelegates:  [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         AppLocalizations.delegate
       ],
-      supportedLocales:  [
+      supportedLocales: const [
         Locale('en'), // English
         Locale('ar'), // Arabic
       ],
       locale: Locale(provider.currentLocale),
       routes: {
-        HomeScreen.routeName: (_) =>  HomeScreen(),
-        DetailsScreen.routeName: (_) => DetailsScreen()
+        HomeScreen.routeName: (_) => const HomeScreen(),
+        DetailsScreen.routeName: (_) => const DetailsScreen()
       },
       initialRoute: HomeScreen.routeName,
     );

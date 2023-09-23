@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class LanguageBottomSheet extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     SettingsProvider provider = Provider.of(context);
@@ -16,35 +15,42 @@ class LanguageBottomSheet extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(AppLocalizations.of(context)!.selectyourlanguage, style: Theme.of(context).textTheme.titleMedium,
+            Text(AppLocalizations.of(context)!.selectyourlanguage,
+                style: Theme.of(context).textTheme.titleMedium,
                 textAlign: TextAlign.center),
-            const SizedBox(height: 22,),
+            const SizedBox(
+              height: 22,
+            ),
             InkWell(
-              child: getLanguageRow(provider.currentLocale == "en", "English",context),
-              onTap: (){
+              child: getLanguageRow(
+                  provider.currentLocale == "en", "English", context),
+              onTap: () {
                 provider.changeCurrentLocale("en");
                 Navigator.pop(context);
               },
             ),
-            const SizedBox(height: 16,),
+            const SizedBox(
+              height: 16,
+            ),
             InkWell(
-              child: getLanguageRow(provider.currentLocale == "ar", "العربية",context),
-              onTap: (){
+              child: getLanguageRow(
+                  provider.currentLocale == "ar", "العربية", context),
+              onTap: () {
                 provider.changeCurrentLocale("ar");
                 Navigator.pop(context);
               },
             )
-
           ],
         ),
       ),
     );
   }
-  getLanguageRow( bool isSelected, String language, BuildContext context ){
-    if(isSelected){
+
+  getLanguageRow(bool isSelected, String language, BuildContext context) {
+    if (isSelected) {
       return Text(
-       language,
-       style: Theme.of(context).textTheme.titleSmall,
+        language,
+        style: Theme.of(context).textTheme.titleSmall,
         textAlign: TextAlign.start,
       );
     } else {

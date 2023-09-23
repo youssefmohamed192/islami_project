@@ -34,13 +34,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage(provider.currentTheme == ThemeMode.light ? AppAssets.lightModeBG
-            : AppAssets.darkModeBG), fit: BoxFit.fill),
+            image: AssetImage(provider.currentTheme == ThemeMode.light
+                ? AppAssets.lightModeBG
+                : AppAssets.darkModeBG),
+            fit: BoxFit.fill),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-          AppLocalizations.of(context)!.islami, style: Theme.of(context).appBarTheme.titleTextStyle),
+          title: Text(AppLocalizations.of(context)!.islami,
+              style: Theme.of(context).appBarTheme.titleTextStyle),
         ),
         bottomNavigationBar: buildBottomNavigationBar(),
         body: tabs[tabIndex],
@@ -49,29 +51,29 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildBottomNavigationBar() => BottomNavigationBar(
-    items:  [
-      BottomNavigationBarItem(
-          icon: const ImageIcon(AssetImage(AppAssets.iconQuran)),
-          label: AppLocalizations.of(context)!.quran),
-      BottomNavigationBarItem(
-          icon: const ImageIcon(AssetImage(AppAssets.iconAhadeth)),
-          label: AppLocalizations.of(context)!.ahadeth),
-      BottomNavigationBarItem(
-          icon: const ImageIcon(AssetImage(AppAssets.iconSebha)),
-          label: AppLocalizations.of(context)!.sebha),
-      BottomNavigationBarItem(
-          icon: const ImageIcon(AssetImage(AppAssets.iconRadio)),
-          label: AppLocalizations.of(context)!.radio),
-      BottomNavigationBarItem(
-          icon: const Icon(Icons.settings),
-          label: AppLocalizations.of(context)!.settings)
-    ],
-    // It's not working in Flutter. (bug)
-    // backgroundColor: AppColors.primary,
-    currentIndex: tabIndex,
-    onTap: (index) {
-      tabIndex = index;
-      setState(() {});
-    },
-  );
+        items: [
+          BottomNavigationBarItem(
+              icon: const ImageIcon(AssetImage(AppAssets.iconQuran)),
+              label: AppLocalizations.of(context)!.quran),
+          BottomNavigationBarItem(
+              icon: const ImageIcon(AssetImage(AppAssets.iconAhadeth)),
+              label: AppLocalizations.of(context)!.ahadeth),
+          BottomNavigationBarItem(
+              icon: const ImageIcon(AssetImage(AppAssets.iconSebha)),
+              label: AppLocalizations.of(context)!.sebha),
+          BottomNavigationBarItem(
+              icon: const ImageIcon(AssetImage(AppAssets.iconRadio)),
+              label: AppLocalizations.of(context)!.radio),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.settings),
+              label: AppLocalizations.of(context)!.settings)
+        ],
+        // It's not working in Flutter. (bug)
+        // backgroundColor: AppColors.primary,
+        currentIndex: tabIndex,
+        onTap: (index) {
+          tabIndex = index;
+          setState(() {});
+        },
+      );
 }
