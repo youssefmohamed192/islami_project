@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:islami_project/provider/settings_provider.dart';
 import 'package:islami_project/ui/screens/home/tabs/settings_tab/language_bottom_sheet.dart';
 import 'package:islami_project/utils/app_colors.dart';
-import 'package:islami_project/utils/app_theme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 class SettingsTab extends StatelessWidget {
-  const SettingsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider provider = Provider.of(context);
+    bool switchValue = false;
+
     return Container(
       // to give padding by height of the screen use MediaQuery Class.
       // MediaQuery.of(context).size.height this is the height of the screen
@@ -20,40 +23,55 @@ class SettingsTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Spacer(flex: 3),
-          const Text("Language", textAlign: TextAlign.start,
-              style: AppTheme.settingsTextStyle),
+          Text(AppLocalizations.of(context)!.language, textAlign: TextAlign.start,
+              style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 22,),
           InkWell(
-            child: getRow("English"),
+            child: getRow(provider.currentLocale == "en" ? "English" : "العربية",context),
             onTap: () {
               onLanguageClick(context);
             },
           ),
           const SizedBox(height: 22,),
-          const Text("Mode"),
-          const SizedBox(height: 22,),
-          InkWell(
-              child: getRow("Light"),
-              // onTap: onThemeClick();
-          ),
+          Row(
+            children: [
+              Text("Dark Mode",textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.titleLarge),
+               Spacer(),
+              Switch(
+                  value: switchValue,
+                  onChanged: (newSwitchValue){
+                    switchValue = newSwitchValue;
+                    if(switchValue){
+                      provider.changeModeTheme(ThemeMode.dark);
+                    }else{
+                      provider.changeModeTheme(ThemeMode.light);
+                    }
+                  }
+              ),
+            ],
+          )
           // Spacer(flex: 7),
         ],
       ),
     );
   }
 
-  Widget getRow(String tittle) {
+  Widget getRow(String tittle,BuildContext context) {
+    SettingsProvider provider = Provider.of(context);
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: AppColors.primary)
+          border: Border.all(color: provider.currentTheme == ThemeMode.light ?
+          AppColors.primary : AppColors.primaryDark)
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(tittle,
-            style: const TextStyle(color: AppColors.primary, fontSize: 16),),
+            style:  TextStyle(color: provider.currentTheme == ThemeMode.light ?
+            AppColors.primary : AppColors.primaryDark, fontSize: 16),),
           const Icon(Icons.arrow_drop_down)
         ],
       ),
@@ -64,9 +82,5 @@ class SettingsTab extends StatelessWidget {
     showModalBottomSheet(context: context, builder: (context){
       return  LanguageBottomSheet();
     });
-  }
-
-  onThemeClick() {
-
   }
 }

@@ -7,4 +7,5 @@ abstract class AppAssets {
   static const iconRadio = "${imagePath}icon_radio.png";
   static const quranLogo = "${imagePath}qur2an_screen_logo.png";
   static const ahadethLogo = "${imagePath}hadeth_logo.png";
+  static const darkModeBG = "${imagePath}dark_bg.png";
 }

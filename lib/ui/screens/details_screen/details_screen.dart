@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_project/model/details_screen_args.dart';
+import 'package:islami_project/provider/settings_provider.dart';
 import 'package:islami_project/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 import '../../../utils/app_assets.dart';
 import '../../../utils/app_theme.dart';
 
@@ -19,17 +21,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider provider = Provider.of(context);
     arguments = ModalRoute.of(context)!.settings.arguments as DetailsScreenArgs;
     if (content.isEmpty) readFile();
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage(AppAssets.lightModeBG), fit: BoxFit.fill),
+            image: AssetImage(provider.currentTheme == ThemeMode.light ? AppAssets.lightModeBG
+                : AppAssets.darkModeBG), fit: BoxFit.fill),
       ),
       child: Scaffold(
         backgroundColor: AppColors.transparent,
         appBar: AppBar(
-          title: Text(arguments.title, style: AppTheme.appBarTittleTextStyle),
+          title: Text(arguments.title, style: Theme.of(context).textTheme.bodySmall),
           elevation: 0,
           backgroundColor: AppColors.transparent,
           centerTitle: true,
@@ -39,7 +43,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             child: Text(content,
-                style: AppTheme.detailsScreenContent,
+                style: Theme.of(context).textTheme.bodySmall,
                 textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
             ),
