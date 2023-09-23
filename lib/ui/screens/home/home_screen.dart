@@ -3,12 +3,15 @@ import 'package:islami_project/ui/screens/home/tabs/ahadeth_tab/ahadeth_tab.dart
 import 'package:islami_project/ui/screens/home/tabs/quran_tab/quran_tab.dart';
 import 'package:islami_project/ui/screens/home/tabs/radio_tab/radio_tab.dart';
 import 'package:islami_project/ui/screens/home/tabs/sebha_tab/sebha_Tab.dart';
+import 'package:islami_project/ui/screens/home/tabs/settings_tab/settings_tab.dart';
 import 'package:islami_project/utils/app_assets.dart';
 import 'package:islami_project/utils/app_colors.dart';
-import '../../../utils/app_theme.dart';
+import 'package:islami_project/utils/app_theme.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "Home";
+
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,7 +19,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int tabIndex = 0;
-  List<Widget> tabs = [QuranTab(), AhadethTab(), SebhaTab(), RadioTab()];
+  List<Widget> tabs = [
+    const QuranTab(),
+    AhadethTab(),
+    SebhaTab(),
+    RadioTab(),
+    SettingsTab()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildBottomNavigationBar() => Theme(
         data: ThemeData(canvasColor: AppColors.primary),
         child: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(AppAssets.iconQuran)),
                 label: "Quran"),
@@ -55,6 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage(AppAssets.iconRadio)),
                 label: "Radio"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: "Settings")
           ],
           // It's not working in Flutter. (bug)
           // backgroundColor: AppColors.primary,

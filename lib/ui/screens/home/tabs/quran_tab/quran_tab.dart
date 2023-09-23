@@ -26,11 +26,10 @@ class QuranTab extends StatelessWidget {
                 return TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, DetailsScreen.routeName,
-                      arguments: DetailsScreenArgs(
-                        title: Constants.suraNames[index],
-                        fileName: "${index+1}.txt",
-                        isQuranFile: true
-                      ));
+                          arguments: DetailsScreenArgs(
+                              title: Constants.suraNames[index],
+                              fileName: "${index + 1}.txt",
+                              isQuranFile: true));
                     },
                     child: Text(
                       Constants.suraNames[index],

@@ -9,4 +9,10 @@ abstract class AppTheme {
       fontSize: 30, fontWeight: FontWeight.w600, color: AppColors.accent);
   static const TextStyle detailsScreenContent =
       TextStyle(fontSize: 24, color: AppColors.accent);
+  static const TextStyle settingsTextStyle =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+  static const TextStyle tittleLanguageBottomSheat =
+      TextStyle(fontWeight: FontWeight.bold, fontSize: 24);
+  static const TextStyle selectedLanguage = TextStyle(
+      fontWeight: FontWeight.bold, fontSize: 20, color: AppColors.primary);
 }

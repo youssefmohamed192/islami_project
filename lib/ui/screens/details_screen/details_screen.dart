@@ -47,7 +47,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ),
       ),
     );
-    ;
   }
 
   void readFile() async {

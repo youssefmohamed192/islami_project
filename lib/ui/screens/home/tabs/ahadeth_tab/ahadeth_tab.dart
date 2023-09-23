@@ -4,7 +4,7 @@ import 'package:islami_project/ui/screens/details_screen/details_screen.dart';
 import 'package:islami_project/utils/app_assets.dart';
 import 'package:islami_project/utils/app_colors.dart';
 import 'package:islami_project/utils/app_theme.dart';
-import 'package:islami_project/utils/constants.dart';
+
 
 class AhadethTab extends StatelessWidget {
   List ahadethNames = List.generate(50, (index) {
